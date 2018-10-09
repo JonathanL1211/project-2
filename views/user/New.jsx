@@ -4,26 +4,33 @@ class HomePage extends React.Component {
   render() {
     return (
         <DefaultLayout title="Home">
-            <form method="POST" action="/">
-                <h1>New user registration</h1>
-                <div className="register">
-                    Name: <input name="name" type="text" />
+         <div className="container">
+            <div className="row">
+                <div className="col-md-4 offset-md-4">
+                <form method="POST" action="/">
+                    <h1 className="form-heading">New user</h1>
+                    <div className="register form-group">
+                        Name: <input name="name" className="form-control" type="text" />
+                    </div>
+                    <br/>
+                    <div className="register form-group">
+                        Password: <input name="password" className="form-control" type="password" />
+                    </div>
+                    <br/>
+                    <div className="register form-group">
+                        Contact Number: <input name="contact" className="form-control" type="text" />
+                    </div>
+                    <br/>
+                    <div className="register form-group">
+                        About me: <input name="bio" className="form-control" type="text" />
+                    </div>
+                    <br/>
+                    <input name="submit" type="submit" />
+                </form>
                 </div>
-                <br/>
-                <div className="register">
-                    Password: <input name="password" type="password" />
-                </div>
-                <br/>
-                <div className="register">
-                    About me: <input name="bio" type="text" />
-                </div>
-                <br/>
-                <div className="register">
-                    Contact Number: <input name="contact" type="text" />
-                </div>
-                <br/>
-                <input name="submit" type="submit" />
-            </form>
+            </div>
+          </div>
+
         </DefaultLayout>
     );
   }
