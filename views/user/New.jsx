@@ -25,7 +25,7 @@ class HomePage extends React.Component {
                         About me: <input name="bio" className="form-control" type="text" />
                     </div>
                     <br/>
-                    <input name="submit" type="submit" />
+                    <input name="submit" className="btn btn-primary" type="submit" />
                 </form>
                 </div>
             </div>
