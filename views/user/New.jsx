@@ -11,15 +11,15 @@ class HomePage extends React.Component {
                 </div>
                 <br/>
                 <div className="register">
-                    Password: <input name="password" type="text" />
+                    Password: <input name="password" type="password" />
                 </div>
                 <br/>
                 <div className="register">
-                    About me: <input name="name" type="text" />
+                    About me: <input name="bio" type="text" />
                 </div>
                 <br/>
                 <div className="register">
-                    Contact Number: <input name="name" type="text" />
+                    Contact Number: <input name="contact" type="text" />
                 </div>
                 <br/>
                 <input name="submit" type="submit" />
