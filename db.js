@@ -20,7 +20,7 @@ if( process.env.DATABASE_URL ){
   configs = {
     user: 'jonathanlau',
     host: '127.0.0.1',
-    database: '',
+    database: 'bookexchange',
     port: 5432
   };
 }
