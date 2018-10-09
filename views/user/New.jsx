@@ -14,6 +14,14 @@ class HomePage extends React.Component {
                     Password: <input name="password" type="text" />
                 </div>
                 <br/>
+                <div className="register">
+                    About me: <input name="name" type="text" />
+                </div>
+                <br/>
+                <div className="register">
+                    Contact Number: <input name="name" type="text" />
+                </div>
+                <br/>
                 <input name="submit" type="submit" />
             </form>
         </DefaultLayout>
