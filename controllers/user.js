@@ -7,7 +7,10 @@ module.exports = (db) => {
    * Controller logic
    * ===========================================
    */
-
+   //Register form
+   const registerForm = (request, response) =>{
+      response.render('user/New');
+   }
 
   /**
    * ===========================================
@@ -31,6 +34,8 @@ module.exports = (db) => {
    * Export controller functions as a module
    * ===========================================
    */
-  return;
+  return{
+    registerForm
+  };
 
 };

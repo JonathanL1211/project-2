@@ -7,7 +7,8 @@ module.exports = (app, db) => {
    *  Users
    *  =========================================
    */
-  // CRUD users
+  // Register users
+  app.get('/new', users.registerForm);
 
 
 

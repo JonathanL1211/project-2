@@ -12,7 +12,7 @@ class HomePage extends React.Component {
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Register</a>
+                            <a class="nav-link" href="/new">Register</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Login</a>
