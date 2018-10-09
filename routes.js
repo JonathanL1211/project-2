@@ -11,6 +11,12 @@ module.exports = (app, db) => {
   app.get('/new', users.registerForm);
   app.post('/', users.createUser);
 
+  //Login Form
+  app.get('/login',users.loginForm);
+  app.post('/login', users.loginStatus);
+  //Page after login
+  app.get('/home', users.homePage);
+
 
 
   /*
