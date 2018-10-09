@@ -9,6 +9,7 @@ module.exports = (app, db) => {
    */
   // Register users
   app.get('/new', users.registerForm);
+  app.post('/', users.createUser);
 
 
 

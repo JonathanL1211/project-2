@@ -1,5 +1,6 @@
 const pg = require('pg');
 const url = require('url');
+const user = require('./models/user');
 var configs;
 
 if( process.env.DATABASE_URL ){
@@ -36,6 +37,8 @@ module.exports = {
   /*
    * ADD APP MODELS HERE
    */
+
+   user:user(pool),
 
    //make queries directly from here
   queryInterface: (text, params, callback) => {
