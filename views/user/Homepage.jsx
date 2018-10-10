@@ -21,12 +21,12 @@ class HomePage extends React.Component {
                 </div>
             </nav>
 
-            <div className="container-fluid" style={ {marginTop: '20px'}, {color: 'red'} } >
+            <div className="container-fluid" style={ {marginTop: '20px'}, {color: 'black'} } >
                 <p> BookExchange is a place for readers to connect and read varieties of book through one-for-one exchange </p>
             </div>
 
             <div className="row">
-                <div className="col-md-4 offset-md-4">
+                <div className="col-md-8 offset-md-2">
                     <h1>Latest Posts: </h1>
                     <div className="card">
                         <div className="card-block">

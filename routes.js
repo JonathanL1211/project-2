@@ -13,12 +13,13 @@ module.exports = (app, db) => {
 
   //Login Form
   app.get('/login',users.loginForm);
-  app.post('/login', users.loginStatus);
-  //Page after login
-  app.get('/home', users.homePage);
+  app.post('/home', users.loginStatus);
 
   //Logged out page
   app.get('/logout', users.loggedOut)
+
+  //profile page
+  app.get('/profile/:name', users.userProfile);
 
 
 

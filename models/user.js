@@ -11,9 +11,8 @@ module.exports = (dbPoolInstance) => {
       // run user input password through bcrypt to obtain hashed password
 
       var hashedValue = sha256(user.password);
-
       // set up query
-      const queryString = 'INSERT INTO users (name, hashedPassword, profileimage, bio, phoneNumber) VALUES ($1, $2, $3, $4, $5)';
+      const queryString = "INSERT INTO users (name, hashedPassword, profileimage, bio, phoneNumber) VALUES ($1, $2, $3, $4, $5)";
 
       const values = [
         user.name,
@@ -30,6 +29,16 @@ module.exports = (dbPoolInstance) => {
       });
     };
 
+    // const registerValidation = (user, callback) =>{
+    //     let trimName = user.name.trim();
+    //     const queryString = "SELECT * FROM users WHERE name = '" + trimName + "';";
+    //     //execute query
+    //     dbPoolInstance.query(queryString, (error, queryResult) => {
+    //     // invoke callback function with results after query has executed
+    //     callback(error, queryResult);
+    //   });
+    // };
+
     const login = (user, callback) => {
       let trimName = user.name.trim(); //trim name so that whitespace doesnt matter for name
       //Set Up query!
@@ -42,16 +51,17 @@ module.exports = (dbPoolInstance) => {
       });
     };
 
-   //  const userDisplay = (user, callback) => {
-   //    //Set Up query!
-   //    let queryString = "SELECT tweets.id, users.name, tweets.content from users, tweets where users.id = '" + user.id + "' AND users.id = tweets.user_id;";
 
-   //    // execute query
-   //    dbPoolInstance.query(queryString, (error, queryResult) => {
-   //      // invoke callback function with results after query has executed
-   //      callback(error, queryResult);
-   //    });
-   //  };
+    const profile = (cookie, callback) => {
+      //Set Up query!
+      let queryString = "SELECT * FROM users WHERE users.id = '" + user['ID cookie'] + "';";
+
+      // execute query
+      dbPoolInstance.query(queryString, (error, queryResult) => {
+        // invoke callback function with results after query has executed
+        callback(error, queryResult);
+      });
+    };
 
    //  /**
    // * ===========================================
@@ -82,6 +92,8 @@ module.exports = (dbPoolInstance) => {
 
     return {
       create,
-      login
+      login,
+      profile
+      // registerValidation
     };
 };

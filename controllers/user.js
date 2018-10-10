@@ -8,41 +8,44 @@ module.exports = (db) => {
    * ===========================================
    */
    //Register form
-   const registerForm = (request, response) =>{
+  const registerForm = (request, response) =>{
       response.render('user/New');
    }
 
-   const createUser = (request, response) => {
+  const createUser = (request, response) => {
       db.user.create(request.body, (error, queryResult) => {
-          if (error) {
+       // console.log(request.body);
+        //console.log('QUERYRESULTS NEW: ', queryResult);
+        if (error) {
             console.error('error getting user:', error);
             response.sendStatus(500);
-          }
-
-          if (queryResult.rowCount >= 1) {
+        }
+        if (queryResult.rowCount >= 1) {
             console.log('User created successfully');
 
-            //response.cookie('username', request.body.name);
-          } else {
-            console.log('User could not be created');
-          }
+          //if (request.body)
 
-          // redirect to home page after creation
-          response.redirect('/');
+          //response.cookie('username', request.body.name);
+        } else {
+            console.log('User could not be created');
+        }
+
+        // redirect to home page after creation
+        response.redirect('/');
 
       })
-   }
+  }
   /**
    * ===========================================
    * Login Function for user
    * ===========================================
    */
 
-   const loginForm = (request, response) => {
+  const loginForm = (request, response) => {
       response.render('user/Login');
-   }
+  }
 
-   const loginStatus = (request, response) => {
+  const loginStatus = (request, response) => {
       db.user.login(request.body, (error, queryResult) => {
         if (error) {
             console.error('Query error:', error.stack);
@@ -58,7 +61,7 @@ module.exports = (db) => {
                 const SALT = "giving free javascript textbooks";
                 let currentSessionCookie = sha256( user_id + 'logged_id' + SALT);
                 // run user input password through bcrypt to obtain hashed password
-                console.log('QUERYRESULTS LOGINSTATUS: ', queryResult.rows);
+                //console.log('QUERYRESULTS LOGINSTATUS: ', queryResult.rows);
                 var hashedValue = sha256(request.body.password);
                 if(hashedValue === queryResult.rows[0].hashedpassword){
                     response.cookie('ID cookie ', user_id);
@@ -66,7 +69,13 @@ module.exports = (db) => {
                     response.cookie('loggedIn', currentSessionCookie);
                     response.cookie('Username', request.body.name);
                     //response.render('user/Index', {user:queryResult.rows});
-                    response.redirect('/home');
+
+                    if(request.cookies !== undefined){
+                        console.log("login direct req cookies:", request.cookies);
+                        response.render('user/Home')
+                    } else{
+                        console.log("error!");
+                    }
                 }
 
                 else{
@@ -77,10 +86,6 @@ module.exports = (db) => {
         }
       })
   }
-
-    const homePage = (request, response)=>{
-        response.render('user/Home');
-    }
 
     /**
    * ===========================================
@@ -95,6 +100,27 @@ module.exports = (db) => {
       response.redirect('/');
 
    }
+
+   /**
+   * ===========================================
+   * Profile page of the user
+   * ===========================================
+   */
+   //Displaying user index page
+     const userProfile = (request, response) => {
+        //console.log("Rest cookies: ", request.cookies)
+        db.user.profile(request.cookies, (err, queryResult) => {
+             if (err) {
+               console.error('error getting user:', err);
+               response.sendStatus(500);
+             }
+             else {
+               console.log("QUERY RESULTS.ROWS: ", queryResult.rows);
+             }
+         })
+     }
+
+
 
   /**
    * ===========================================
@@ -115,8 +141,8 @@ module.exports = (db) => {
     createUser,
     loginForm,
     loginStatus,
-    homePage,
-    loggedOut
+    loggedOut,
+    userProfile
   };
 
 };
