@@ -7,7 +7,7 @@ class HomePage extends React.Component {
             <div className="container">
             <div className="row mt-4">
                 <div className="col-md-4 offset-md-4">
-                    <div className="card border-dark border rounded"} >
+                    <div className="card border-dark border rounded" >
                         <div className="card-body">
                             <form method="POST" action="/login">
                                 <h1 className="form-heading" style={ {marginTop: '20px'} }>Login</h1>
