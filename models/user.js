@@ -13,11 +13,12 @@ module.exports = (dbPoolInstance) => {
       var hashedValue = sha256(user.password);
 
       // set up query
-      const queryString = 'INSERT INTO users (name, hashedPassword, bio, phoneNumber) VALUES ($1, $2, $3, $4)';
+      const queryString = 'INSERT INTO users (name, hashedPassword, profileimage, bio, phoneNumber) VALUES ($1, $2, $3, $4, $5)';
 
       const values = [
         user.name,
         hashedValue,
+        user.image,
         user.bio,
         user.contact
       ];

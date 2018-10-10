@@ -1,9 +1,11 @@
 CREATE TABLE IF NOT EXISTS users (
 	id SERIAL PRIMARY KEY,
 	name TEXT,
+	profileImage, TEXT,
 	hashedPassword TEXT,
-	bio TEXT,
-	phoneNumber INT
+	phoneNumber INTEGER,
+	bio TEXT
+
 );
 
 

@@ -24,6 +24,10 @@ class HomePage extends React.Component {
                                 </div>
                                 <br/>
                                 <div className="register form-group">
+                                    Profile Pic: <input name="image" className="form-control" type="file" />
+                                </div>
+                                <br/>
+                                <div className="register form-group">
                                     About me: <input name="bio" className="form-control" type="text" />
                                 </div>
                                 <br/>
