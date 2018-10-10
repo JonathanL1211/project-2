@@ -52,16 +52,16 @@ module.exports = (dbPoolInstance) => {
     };
 
 
-    const profile = (cookie, callback) => {
-      //Set Up query!
-      let queryString = "SELECT * FROM users WHERE users.id = '" + user['ID cookie'] + "';";
+    // const profile = (cookie, callback) => {
+    //   //Set Up query!
+    //   let queryString = "SELECT * FROM users WHERE users.id = '" + user['ID cookie'] + "';";
 
-      // execute query
-      dbPoolInstance.query(queryString, (error, queryResult) => {
-        // invoke callback function with results after query has executed
-        callback(error, queryResult);
-      });
-    };
+    //   // execute query
+    //   dbPoolInstance.query(queryString, (error, queryResult) => {
+    //     // invoke callback function with results after query has executed
+    //     callback(error, queryResult);
+    //   });
+    // };
 
    //  /**
    // * ===========================================

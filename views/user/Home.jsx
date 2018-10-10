@@ -2,6 +2,8 @@ var React = require("react");
 var DefaultLayout = require('../layout/DefaultLayout');
 class HomePage extends React.Component {
   render() {
+    console.log("this.props in HOME: ", this.props);
+    let hrefUrl = "/profile/" + this.props.id;
     return (
         <DefaultLayout title="Home">
             <nav className="navbar navbar-expand-lg navbar-light bg-info">
@@ -12,7 +14,7 @@ class HomePage extends React.Component {
                 <div className="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Profile</a>
+                            <a className="nav-link" href={hrefUrl}>Profile</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="/logout">Log out</a>

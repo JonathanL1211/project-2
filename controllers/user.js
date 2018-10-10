@@ -14,8 +14,8 @@ module.exports = (db) => {
 
   const createUser = (request, response) => {
       db.user.create(request.body, (error, queryResult) => {
-       // console.log(request.body);
-        //console.log('QUERYRESULTS NEW: ', queryResult);
+        console.log("request.body for CREATE: ", request.body);
+        console.log('QUERYRESULTS NEW: ', queryResult.rows);
         if (error) {
             console.error('error getting user:', error);
             response.sendStatus(500);
@@ -57,6 +57,7 @@ module.exports = (db) => {
             }
             else {
                 let user_id = queryResult.rows[0].id;
+                console.log("user.id=" , user_id);
                 //use SALT for extra security
                 const SALT = "giving free javascript textbooks";
                 let currentSessionCookie = sha256( user_id + 'logged_id' + SALT);
@@ -64,18 +65,13 @@ module.exports = (db) => {
                 //console.log('QUERYRESULTS LOGINSTATUS: ', queryResult.rows);
                 var hashedValue = sha256(request.body.password);
                 if(hashedValue === queryResult.rows[0].hashedpassword){
-                    response.cookie('ID cookie ', user_id);
+                    response.cookie('ID cookie', user_id);
                      // drop cookies to indicate user's logged in status and username
                     response.cookie('loggedIn', currentSessionCookie);
                     response.cookie('Username', request.body.name);
                     //response.render('user/Index', {user:queryResult.rows});
-
-                    if(request.cookies !== undefined){
-                        console.log("login direct req cookies:", request.cookies);
-                        response.render('user/Home')
-                    } else{
-                        console.log("error!");
-                    }
+                    //console.log("login direct req cookies:", request.cookies['ID cookie']);
+                    response.render('user/Home', {id: user_id});
                 }
 
                 else{
