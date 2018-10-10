@@ -35,7 +35,12 @@ app.engine('jsx', reactEngine);
 require('./routes')(app, db);
 // Root GET request (it doesn't belong in any controller file)
 app.get('/', (request, response) => {
-  response.render('user/Homepage');
+    if (request.cookies['loggedIn'] !== undefined){
+        response.redirect('/home');
+    }
+    else{
+        response.render('user/Homepage');
+    }
 });
 
 /**

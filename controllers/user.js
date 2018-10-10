@@ -31,7 +31,7 @@ module.exports = (db) => {
         }
 
         // redirect to home page after creation
-        response.redirect('/');
+        response.redirect('/login');
 
       })
   }
