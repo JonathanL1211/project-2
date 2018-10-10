@@ -8,7 +8,7 @@ class HomePage extends React.Component {
             <div className="row">
                 <div className="col-md-4 offset-md-4">
                 <form method="POST" action="/">
-                    <h1 className="form-heading">New user</h1>
+                    <h1 className="form-heading" style={ {marginTop: '20px'} }>New user</h1>
                     <div className="register form-group">
                         Name: <input name="name" className="form-control" type="text" />
                     </div>
