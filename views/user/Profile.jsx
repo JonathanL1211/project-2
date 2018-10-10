@@ -2,7 +2,8 @@ var React = require("react");
 var DefaultLayout = require('../layout/DefaultLayout');
 class Profile extends React.Component {
   render() {
-    //console.log("this.props in HOME: ", this.props);
+    console.log("HOMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+    console.log("this.props in HOME: ", this.props);
     return (
         <DefaultLayout title="Home">
             <nav className="navbar navbar-expand-lg navbar-light bg-info">
@@ -24,11 +25,13 @@ class Profile extends React.Component {
                     <div className="col-md-5 mt-3">
                         <div className="card border-dark border rounded" >
                             <div className="card-body">
-                               <h3 className="card-title">Profile Details</h3>
-                               <h5 className="card-subtitle mb-2 text-muted">Profile information</h5>
-                               <p> Name: {this.props.res[0].name} </p>
-                               <p> Biography: {this.props.res[0].bio} </p>
-                               <p> Contact: {this.props.res[0].phonenumber} </p>
+                                <h3 className="card-title">Profile Details</h3>
+                                <h5 className="card-subtitle mb-2 text-muted">Profile information</h5>
+                                <p> Name: {this.props.res[0].name} </p>
+                                <p> Biography: {this.props.res[0].bio} </p>
+                                <p> Contact: {this.props.res[0].phonenumber} </p>
+                                <a href='#'><input className="btn btn-primary" type="button" value="edit"/></a>
+                                <a href='#'><input className="btn btn-primary ml-2" type="button" value="delete"/></a>
                             </div>
                         </div>
                     </div>
