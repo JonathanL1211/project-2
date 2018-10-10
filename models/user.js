@@ -29,16 +29,6 @@ module.exports = (dbPoolInstance) => {
       });
     };
 
-    // const registerValidation = (user, callback) =>{
-    //     let trimName = user.name.trim();
-    //     const queryString = "SELECT * FROM users WHERE name = '" + trimName + "';";
-    //     //execute query
-    //     dbPoolInstance.query(queryString, (error, queryResult) => {
-    //     // invoke callback function with results after query has executed
-    //     callback(error, queryResult);
-    //   });
-    // };
-
     const login = (user, callback) => {
       let trimName = user.name.trim(); //trim name so that whitespace doesnt matter for name
       //Set Up query!
@@ -51,10 +41,26 @@ module.exports = (dbPoolInstance) => {
       });
     };
 
+    //  /**
+   // * ===========================================
+   // * User's profile
+   // * ===========================================
+   // */
 
-    // const profile = (cookie, callback) => {
+    const profile = (params, cookie, callback) => {
+      //Set Up query!
+      let queryString = "SELECT * FROM users WHERE users.id = '" + params.id + "';";
+
+      // execute query
+      dbPoolInstance.query(queryString, (error, queryResult) => {
+            // invoke callback function with results after query has executed
+            callback(error, queryResult);
+      });
+    };
+
+    // const userDisplay = (user, callback) => {
     //   //Set Up query!
-    //   let queryString = "SELECT * FROM users WHERE users.id = '" + user['ID cookie'] + "';";
+    //   let queryString = "SELECT * from users WHERE users.id = '" + user.id + "';";
 
     //   // execute query
     //   dbPoolInstance.query(queryString, (error, queryResult) => {
@@ -94,6 +100,7 @@ module.exports = (dbPoolInstance) => {
       create,
       login,
       profile
+      // userDisplay
       // registerValidation
     };
 };

@@ -45,7 +45,7 @@ module.exports = (db) => {
       response.render('user/Login');
   }
 
-  const loginStatus = (request, response) => {
+  const pageAfterLogin = (request, response) => {
       db.user.login(request.body, (error, queryResult) => {
         if (error) {
             console.error('Query error:', error.stack);
@@ -57,7 +57,7 @@ module.exports = (db) => {
             }
             else {
                 let user_id = queryResult.rows[0].id;
-                console.log("user.id=" , user_id);
+                // console.log("user.id=" , user_id);
                 //use SALT for extra security
                 const SALT = "giving free javascript textbooks";
                 let currentSessionCookie = sha256( user_id + 'logged_id' + SALT);
@@ -65,13 +65,19 @@ module.exports = (db) => {
                 //console.log('QUERYRESULTS LOGINSTATUS: ', queryResult.rows);
                 var hashedValue = sha256(request.body.password);
                 if(hashedValue === queryResult.rows[0].hashedpassword){
-                    response.cookie('ID cookie', user_id);
+
+                    response.cookie('userId', user_id);
                      // drop cookies to indicate user's logged in status and username
                     response.cookie('loggedIn', currentSessionCookie);
                     response.cookie('Username', request.body.name);
                     //response.render('user/Index', {user:queryResult.rows});
                     //console.log("login direct req cookies:", request.cookies['ID cookie']);
-                    response.render('user/Home', {id: user_id});
+                    // console.log("UYUYUYUYUYUYUYUYUYUYUYUYUYUYUYUY")
+                    // console.log("UYUYUYUYUYUYUYUYUYUYUYUYUYUYUYUY")
+                    // console.log("UYUYUYUYUYUYUYUYUYUYUYUYUYUYUYUY")
+                    // console.log("UYUYUYUYUYUYUYUYUYUYUYUYUYUYUYUY")
+                    //console.log('user id: ', request.cookies['userId']);
+                    response.redirect('/home');
                 }
 
                 else{
@@ -83,18 +89,21 @@ module.exports = (db) => {
       })
   }
 
+  const redirectHome = (request, response) => {
+      response.render('user/Home', {cookie: request.cookies});
+  }
+
     /**
    * ===========================================
    * Logout function for user
    * ===========================================
    */
 
-   const loggedOut = (request, response) => {
+  const loggedOut = (request, response) => {
       response.clearCookie('loggedIn');
       response.clearCookie('Username');
       response.clearCookie('ID cookie ');
       response.redirect('/');
-
    }
 
    /**
@@ -103,18 +112,34 @@ module.exports = (db) => {
    * ===========================================
    */
    //Displaying user index page
-     const userProfile = (request, response) => {
-        //console.log("Rest cookies: ", request.cookies)
-        db.user.profile(request.cookies, (err, queryResult) => {
-             if (err) {
-               console.error('error getting user:', err);
-               response.sendStatus(500);
-             }
-             else {
-               console.log("QUERY RESULTS.ROWS: ", queryResult.rows);
-             }
-         })
-     }
+  const userProfile = (request, response) => {
+    //console.log("Rest cookies: ", request.cookies)
+      db.user.profile(request.params, request.cookies, (err, queryResult) => {
+          if (err) {
+            console.error('error getting user:', err);
+            response.sendStatus(500);
+          }
+          else {
+            //if(request.params === )
+            console.log("QUERY RESULTS.ROWS: ", queryResult.rows);
+            response.render('user/Profile', {res: queryResult.rows, cookie:request.cookies});
+          }
+      })
+  }
+
+  // const otherUserProfile = (request, response) => {
+  //     //console.log("Rest cookies: ", request.cookies)
+  //     db.user.userDisplay(request.params, (err, queryResult) => {
+  //       if (err) {
+  //         console.error('error getting user:', err);
+  //         response.sendStatus(500);
+  //       }
+  //       else {
+  //         console.log("QUERY RESULTS.ROWS: ", queryResult.rows);
+  //         response.render('user/Index', {users: queryResult.rows, cookies:request.cookies})
+  //       }
+  //     })
+  // }
 
 
 
@@ -136,9 +161,11 @@ module.exports = (db) => {
     registerForm,
     createUser,
     loginForm,
-    loginStatus,
+    pageAfterLogin,
     loggedOut,
-    userProfile
+    userProfile,
+    // otherUserProfile,
+    redirectHome
   };
 
 };

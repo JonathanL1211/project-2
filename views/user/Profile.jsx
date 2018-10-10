@@ -1,10 +1,8 @@
 var React = require("react");
 var DefaultLayout = require('../layout/DefaultLayout');
-class HomePage extends React.Component {
+class Profile extends React.Component {
   render() {
-    console.log("this.props in HOME: ", this.props.cookie['userId']);
-    let userId = this.props.cookie['userId'];
-    let hrefUrl = "/profile/" + userId;
+    //console.log("this.props in HOME: ", this.props);
     return (
         <DefaultLayout title="Home">
             <nav className="navbar navbar-expand-lg navbar-light bg-info">
@@ -15,36 +13,34 @@ class HomePage extends React.Component {
                 <div className="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <a className="nav-link" href={hrefUrl}>Profile</a>
-                        </li>
-                        <li className="nav-item">
                             <a className="nav-link" href="/logout">Log out</a>
                         </li>
                     </ul>
                 </div>
             </nav>
 
-            <div className="container-fluid" style={ {marginTop: '20px'}, {color: 'black'} } >
-                <p> BookExchange is a place for readers to connect and read varieties of book through one-for-one exchange </p>
-            </div>
-
-            <div className="row">
-                <div className="col-md-8 offset-md-2">
-                    <h1>Latest Posts: </h1>
-                    <div className="card">
-                        <div className="card-block">
-                            <p className="text-center">This is the first post </p>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-md-5 mt-3">
+                        <div className="card border-dark border rounded" >
+                            <div className="card-body">
+                               <h3 className="card-title">Profile Details</h3>
+                               <h5 className="card-subtitle mb-2 text-muted">Profile information</h5>
+                               <p> Name: {this.props.res[0].name} </p>
+                               <p> Biography: {this.props.res[0].bio} </p>
+                               <p> Contact: {this.props.res[0].phonenumber} </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div className="container-fluid">
 
-
-
+            </div>
         </DefaultLayout>
     );
   }
 }
 
-module.exports = HomePage;
+module.exports = Profile;
