@@ -13,11 +13,11 @@ class HomePage extends React.Component {
                                 <h1 className="form-heading" style={ {marginTop: '20px'} }>Login</h1>
                                 <p>Please enter your username and password</p>
                                 <div className="login form-group">
-                                    Name: <input name="name" className="form-control" type="text" />
+                                    Name: <input name="name" className="form-control" type="text" required/>
                                 </div>
                                 <br/>
                                 <div className="login form-group">
-                                    Password: <input name="password" className="form-control" type="password" />
+                                    Password: <input name="password" className="form-control" type="password" required />
                                 </div>
                                 <div className="forget">
                                     <a href="/#">Forget Password?</a>

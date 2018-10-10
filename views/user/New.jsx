@@ -12,15 +12,15 @@ class HomePage extends React.Component {
                             <form method="POST" action="/">
                                 <h1 className="form-heading" style={ {marginTop: '20px'} }>New user</h1>
                                 <div className="register form-group">
-                                    Name: <input name="name" className="form-control" type="text" />
+                                    Name: <input name="name" className="form-control" type="text" required/>
                                 </div>
                                 <br/>
                                 <div className="register form-group">
-                                    Password: <input name="password" className="form-control" type="password" />
+                                    Password: <input name="password" className="form-control" type="password" required/>
                                 </div>
                                 <br/>
                                 <div className="register form-group">
-                                    Contact Number: <input name="contact" className="form-control" type="text" />
+                                    Contact Number: <input name="contact" className="form-control" type="text" required/>
                                 </div>
                                 <br/>
                                 <div className="register form-group">
