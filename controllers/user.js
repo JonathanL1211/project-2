@@ -82,6 +82,19 @@ module.exports = (db) => {
         response.render('user/Home');
     }
 
+    /**
+   * ===========================================
+   * Logout function for user
+   * ===========================================
+   */
+
+   const loggedOut = (request, response) => {
+      response.clearCookie('loggedIn');
+      response.clearCookie('Username');
+      response.clearCookie('ID cookie ');
+      response.redirect('/');
+
+   }
 
   /**
    * ===========================================
@@ -102,7 +115,8 @@ module.exports = (db) => {
     createUser,
     loginForm,
     loginStatus,
-    homePage
+    homePage,
+    loggedOut
   };
 
 };

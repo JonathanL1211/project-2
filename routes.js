@@ -17,6 +17,9 @@ module.exports = (app, db) => {
   //Page after login
   app.get('/home', users.homePage);
 
+  //Logged out page
+  app.get('/logout', users.loggedOut)
+
 
 
   /*
