@@ -47,7 +47,7 @@ module.exports = (dbPoolInstance) => {
    // * ===========================================
    // */
 
-    const profile = (params, cookie, callback) => {
+    const profile = (params, callback) => {
       //Set Up query!
       let queryString = "SELECT * FROM users WHERE users.id = '" + params.id + "';";
 
@@ -57,6 +57,27 @@ module.exports = (dbPoolInstance) => {
             callback(error, queryResult);
       });
     };
+
+    //UPDATING profile
+    const update = (user, params, callback) => {
+
+        var hashedValue = sha256(user.password);
+        let queryString = "UPDATE users SET name = ($1), profileimage = ($2), hashedPassword = ($3), phoneNumber = ($4), bio = ($5) WHERE id = ($6) RETURNING *";
+
+        const values = [
+            user.name,
+            user.image,
+            hashedValue,
+            user.contact,
+            user.bio,
+            params.id
+        ];
+        // execute query
+        dbPoolInstance.query(queryString, values, (error, queryResult) => {
+          // invoke callback function with results after query has executed
+          callback(error, queryResult);
+        });
+    }
 
     // const userDisplay = (user, callback) => {
     //   //Set Up query!
@@ -99,8 +120,8 @@ module.exports = (dbPoolInstance) => {
     return {
       create,
       login,
-      profile
-      // userDisplay
-      // registerValidation
+      profile,
+      update
+
     };
 };

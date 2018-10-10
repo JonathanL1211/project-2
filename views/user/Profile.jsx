@@ -4,6 +4,7 @@ class Profile extends React.Component {
   render() {
     console.log("HOMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
     console.log("this.props in HOME: ", this.props);
+    let editUrl = '/profile/' + this.props.res[0].id +'/edit';
     return (
         <DefaultLayout title="Home">
             <nav className="navbar navbar-expand-lg navbar-light bg-info">
@@ -30,7 +31,7 @@ class Profile extends React.Component {
                                 <p> Name: {this.props.res[0].name} </p>
                                 <p> Biography: {this.props.res[0].bio} </p>
                                 <p> Contact: {this.props.res[0].phonenumber} </p>
-                                <a href='#'><input className="btn btn-primary" type="button" value="edit"/></a>
+                                <a href={editUrl}><input className="btn btn-primary" type="button" value="edit"/></a>
                                 <a href='#'><input className="btn btn-primary ml-2" type="button" value="delete"/></a>
                             </div>
                         </div>

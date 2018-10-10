@@ -4,9 +4,26 @@ module.exports = (db) => {
 
   /**
    * ===========================================
-   * Controller logic
+   * Controller logics
    * ===========================================
    */
+   //Redirect to homepage
+   const redirectHome = (request, response) => {
+     console.log("HERREEEEEEEEEEEEEEEEEEEEE");
+     console.log(request.cookies);
+       if (request.cookies['loggedIn'] !== undefined){
+           response.render('user/Home', {cookie: request.cookies});
+       }
+       else {
+           response.send("You are not logged in!")
+       }
+   }
+   /**
+   * ===========================================
+   * Register form
+   * ===========================================
+   */
+
    //Register form
   const registerForm = (request, response) =>{
       response.render('user/New');
@@ -89,17 +106,6 @@ module.exports = (db) => {
       })
   }
 
-  const redirectHome = (request, response) => {
-    console.log("HERREEEEEEEEEEEEEEEEEEEEE");
-    console.log(request.cookies);
-      if (request.cookies['loggedIn'] !== undefined){
-          response.render('user/Home', {cookie: request.cookies});
-      }
-      else {
-          response.send("You are not logged in!")
-      }
-  }
-
     /**
    * ===========================================
    * Logout function for user
@@ -121,7 +127,7 @@ module.exports = (db) => {
    //Displaying user index page
   const userProfile = (request, response) => {
     //console.log("Rest cookies: ", request.cookies)
-      db.user.profile(request.params, request.cookies, (err, queryResult) => {
+      db.user.profile(request.params, (err, queryResult) => {
           if (err) {
             console.error('error getting user:', err);
             response.sendStatus(500);
@@ -133,6 +139,33 @@ module.exports = (db) => {
           }
       })
   }
+
+  /**
+   * ===========================================
+   * Controller logics
+   * ===========================================
+   */
+   const editProfile = (request, response) => {
+      response.render('user/Edit', {this: request.params.id});
+   }
+
+   const update = (request, response) => {
+      db.user.update(request.body, request.params, (error, queryResult) => {
+        // console.log("request.body for UPDATE: ", request.body);
+        console.log('UPDATEEEEEEEEEEEEEEEEEEEEEEE------------');
+        console.log('QUERYRESULTS UPDATEEEEEEEE: ', queryResult.rows);
+        if (error) {
+            console.error('error getting user:', error);
+            response.sendStatus(500);
+        }
+        if (queryResult.rowCount >= 1) {
+            response.redirect('/home');
+        } else {
+            response.send('NOT UPDATED!');
+        }
+      })
+   }
+
 
   // const otherUserProfile = (request, response) => {
   //     //console.log("Rest cookies: ", request.cookies)
@@ -165,14 +198,15 @@ module.exports = (db) => {
    * ===========================================
    */
   return{
+    redirectHome,
     registerForm,
     createUser,
     loginForm,
     pageAfterLogin,
     loggedOut,
     userProfile,
-    // otherUserProfile,
-    redirectHome
+    editProfile,
+    update
   };
 
 };

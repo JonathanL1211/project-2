@@ -22,8 +22,9 @@ module.exports = (app, db) => {
   //profile page (getting your own profile)
   app.get('/profile/:id', users.userProfile);
 
-  //getting other user's profile
-  //app.get('/profile/:id', users.otherUserProfile);
+  //Edit page
+  app.get('/profile/:id/edit', users.editProfile)
+  app.put('/profile/:id', users.update);
 
 
 
