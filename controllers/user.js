@@ -90,7 +90,14 @@ module.exports = (db) => {
   }
 
   const redirectHome = (request, response) => {
-      response.render('user/Home', {cookie: request.cookies});
+    console.log("HERREEEEEEEEEEEEEEEEEEEEE");
+    console.log(request.cookies);
+      if (request.cookies['loggedIn'] !== undefined){
+          response.render('user/Home', {cookie: request.cookies});
+      }
+      else {
+          response.send("You are not logged in!")
+      }
   }
 
     /**
