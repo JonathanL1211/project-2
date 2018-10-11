@@ -2,9 +2,14 @@ var React = require("react");
 var DefaultLayout = require('../layout/DefaultLayout');
 class EditPage extends React.Component {
   render() {
-    console.log('EDIITTTTTTTTT: ',this.props);
-    let userId= this.props.this;
+    console.log('EDIITTTTTTTTT: ',this.props.results);
+    let userId= this.props.results[0].id;
     let actionUrl = '/profile/' + userId + '/?_method=PUT';
+    let defaultInputValue = {
+        name: this.props.results[0].name,
+        contact: this.props.results[0].phonenumber,
+        bio: this.props.results[0].bio
+    };
     return (
         <DefaultLayout title="Home">
         <div className="container">
@@ -15,7 +20,7 @@ class EditPage extends React.Component {
                             <form method="POST" action={actionUrl}>
                                 <h1 className="form-heading" style={ {marginTop: '20px'} }>Edit Profile</h1>
                                 <div className="register form-group">
-                                    Name: <input name="name" className="form-control" type="text" required/>
+                                    Name: <input name="name" className="form-control" type="text" value={defaultInputValue.name}required/>
                                 </div>
                                 <br/>
                                 <div className="register form-group">
@@ -23,7 +28,7 @@ class EditPage extends React.Component {
                                 </div>
                                 <br/>
                                 <div className="register form-group">
-                                    Contact Number: <input name="contact" className="form-control" type="text" required/>
+                                    Contact Number: <input name="contact" className="form-control" type="text" value={defaultInputValue.contact}required/>
                                 </div>
                                 <br/>
                                 <div className="register form-group">
@@ -31,7 +36,7 @@ class EditPage extends React.Component {
                                 </div>
                                 <br/>
                                 <div className="register form-group">
-                                    About me: <input name="bio" className="form-control" type="text" />
+                                    About me: <input name="bio" className="form-control" type="text" value={defaultInputValue.bio} />
                                 </div>
                                 <br/>
                                 <input name="submit" className="btn btn-primary" type="submit" />

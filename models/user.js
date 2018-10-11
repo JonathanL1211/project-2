@@ -58,6 +58,19 @@ module.exports = (dbPoolInstance) => {
       });
     };
 
+    //get info for forms
+    const getUserInfo = (params, callback) => {
+        let queryString = "SELECT * FROM users WHERE id = ($1)";
+        const value = [
+            params.id
+        ];
+        // execute query
+        dbPoolInstance.query(queryString, value, (error, queryResult) => {
+          // invoke callback function with results after query has executed
+          callback(error, queryResult);
+        });
+    }
+
     //UPDATING profile
     const update = (user, params, callback) => {
 
@@ -121,7 +134,7 @@ module.exports = (dbPoolInstance) => {
       create,
       login,
       profile,
+      getUserInfo,
       update
-
     };
 };

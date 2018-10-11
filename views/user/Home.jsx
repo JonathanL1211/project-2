@@ -2,7 +2,7 @@ var React = require("react");
 var DefaultLayout = require('../layout/DefaultLayout');
 class HomePage extends React.Component {
   render() {
-    console.log("this.props in HOME: ", this.props.cookie['userId']);
+    //console.log("this.props in HOME: ", this.props.cookie['userId']);
     let userId = this.props.cookie['userId'];
     let hrefUrl = "/profile/" + userId;
     return (

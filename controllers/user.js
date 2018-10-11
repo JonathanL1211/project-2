@@ -9,8 +9,8 @@ module.exports = (db) => {
    */
    //Redirect to homepage
    const redirectHome = (request, response) => {
-     console.log("HERREEEEEEEEEEEEEEEEEEEEE");
-     console.log(request.cookies);
+     // console.log("HERREEEEEEEEEEEEEEEEEEEEE");
+     // console.log(request.cookies);
        if (request.cookies['loggedIn'] !== undefined){
            response.render('user/Home', {cookie: request.cookies});
        }
@@ -134,7 +134,7 @@ module.exports = (db) => {
           }
           else {
             //if(request.params === )
-            console.log("QUERY RESULTS.ROWS: ", queryResult.rows);
+            //console.log("QUERY RESULTS.ROWS: ", queryResult.rows);
             response.render('user/Profile', {res: queryResult.rows, cookie:request.cookies});
           }
       })
@@ -146,14 +146,20 @@ module.exports = (db) => {
    * ===========================================
    */
    const editProfile = (request, response) => {
-      response.render('user/Edit', {this: request.params.id});
+      db.user.getUserInfo(request.params, (error, queryResult) => {
+          if (error) {
+            console.error('error getting user:', error);
+            response.sendStatus(500);
+          }
+          response.render('user/Edit', {results: queryResult.rows});
+      })
    }
 
    const update = (request, response) => {
       db.user.update(request.body, request.params, (error, queryResult) => {
         // console.log("request.body for UPDATE: ", request.body);
         console.log('UPDATEEEEEEEEEEEEEEEEEEEEEEE------------');
-        console.log('QUERYRESULTS UPDATEEEEEEEE: ', queryResult.rows);
+        //console.log('QUERYRESULTS UPDATEEEEEEEE: ', queryResult.rows);
         if (error) {
             console.error('error getting user:', error);
             response.sendStatus(500);

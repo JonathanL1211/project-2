@@ -2,8 +2,8 @@ var React = require("react");
 var DefaultLayout = require('../layout/DefaultLayout');
 class Profile extends React.Component {
   render() {
-    console.log("HOMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-    console.log("this.props in HOME: ", this.props);
+    //console.log("HOMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+    //console.log("this.props in HOME: ", this.props);
     let editUrl = '/profile/' + this.props.res[0].id +'/edit';
     return (
         <DefaultLayout title="Home">
