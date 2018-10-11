@@ -1,6 +1,7 @@
 module.exports = (app, db) => {
 
   const users = require('./controllers/user')(db);
+  const bookPosts = require('./controllers/bookPost')(db)
 
   /*
    *  =========================================
@@ -26,6 +27,13 @@ module.exports = (app, db) => {
   app.get('/profile/:id/edit', users.editProfile)
   app.put('/profile/:id', users.update);
 
+  /*
+   *  =========================================
+   *  Book Posts
+   *  =========================================
+   */
+   //new book posts form
+   app.get('/post', bookPosts.newPostForm);
 
 
   /*

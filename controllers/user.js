@@ -142,7 +142,7 @@ module.exports = (db) => {
 
   /**
    * ===========================================
-   * Controller logics
+   * Editing profile
    * ===========================================
    */
    const editProfile = (request, response) => {
@@ -178,6 +178,7 @@ module.exports = (db) => {
         }
       })
    }
+
 
 
   // const otherUserProfile = (request, response) => {

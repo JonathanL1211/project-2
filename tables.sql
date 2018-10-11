@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS bookPosts (
 	id SERIAL PRIMARY KEY,
 	title TEXT,
+	postimage TEXT,
 	content TEXT,
 	user_id INTEGER
 );
