@@ -11,12 +11,15 @@ module.exports = (db) => {
    const redirectHome = (request, response) => {
      // console.log("HERREEEEEEEEEEEEEEEEEEEEE");
      // console.log(request.cookies);
-       if (request.cookies['loggedIn'] !== undefined){
-           response.render('user/Home', {cookie: request.cookies});
-       }
-       else {
-           response.send("You are not logged in!")
-       }
+     db.user.homepagePost((error, queryResult)=>{
+        if (request.cookies['loggedIn'] !== undefined){
+            response.render('user/Home', {cookie: request.cookies, res: queryResult.rows});
+        }
+        else {
+            response.send("You are not logged in!")
+        }
+     })
+
    }
    /**
    * ===========================================

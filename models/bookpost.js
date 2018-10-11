@@ -7,6 +7,11 @@ var sha256 = require('js-sha256');
  * ===========================================
  */
 module.exports = (dbPoolInstance) => {
+    /**
+   * ===========================================
+   * Creating and Displaying posts
+   * ===========================================
+   */
     const createPost = (post, cookie, callback) => {
       // set up query
       const queryString = "INSERT INTO bookposts (title, postimage, content, user_Id) VALUES ($1, $2, $3, $4) RETURNING *";

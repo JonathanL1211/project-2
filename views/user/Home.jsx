@@ -2,9 +2,21 @@ var React = require("react");
 var DefaultLayout = require('../layout/DefaultLayout');
 class HomePage extends React.Component {
   render() {
-    //console.log("this.props in HOME: ", this.props.cookie['userId']);
+    console.log("-------------------------------------------HOMEEEEEEEEEEE");
+    console.log("this.props in HOME: ", this.props.res);
     let userId = this.props.cookie['userId'];
     let hrefUrl = "/profile/" + userId;
+
+    let mapLatestPost = this.props.res.map(post => {
+        return (
+            <div>
+                <h3>{post.title}</h3>
+                <p className="text-truncate">{post.content}</p>
+                <hr/>
+            </div>
+            )
+    })
+
     return (
         <DefaultLayout title="Home">
             <nav className="navbar navbar-expand-lg navbar-light bg-info">
@@ -33,7 +45,7 @@ class HomePage extends React.Component {
                     <h1>Latest Posts: </h1>
                     <div className="card">
                         <div className="card-block">
-                            <p className="text-center">This is the first post </p>
+                            <p className="text-center">{mapLatestPost}</p>
                         </div>
                     </div>
                 </div>
