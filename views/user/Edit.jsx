@@ -39,7 +39,7 @@ class EditPage extends React.Component {
                                     About me: <input name="bio" className="form-control" type="text" value={defaultInputValue.bio} />
                                 </div>
                                 <br/>
-                                <input name="submit" className="btn btn-primary" type="submit" />
+                                <input name="submit" className="btn btn-primary" type="submit" value="update" />
                             </form>
                         </div>
                     </div>
