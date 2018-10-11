@@ -36,7 +36,16 @@ module.exports = (db) => {
   }
 
   const displayPostPage = (request, response) =>{
-
+      db.bookpost.getPostInfo(request.params, (err, queryResult)=>{
+          if (err) {
+            console.error('error getting user:', err);
+            response.sendStatus(500);
+          }
+          else {
+            console.log("displayyy----------------------:", queryResult);
+            response.render('bookpost/Index', {res:queryResult.rows});
+          }
+      })
   };
 
   return{

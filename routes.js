@@ -32,9 +32,12 @@ module.exports = (app, db) => {
    *  Book Posts
    *  =========================================
    */
-   //new book posts form
-   app.get('/post', bookPosts.newPostForm);
-   app.post('/posts', bookPosts.createPost);
+  //new book posts form
+  app.get('/post', bookPosts.newPostForm);
+  app.post('/posts', bookPosts.createPost);
+
+  //display book post page!
+  app.get('/post/:id', bookPosts.displayPostPage);
 
 
   /*

@@ -9,7 +9,7 @@ var sha256 = require('js-sha256');
 module.exports = (dbPoolInstance) => {
     const createPost = (post, cookie, callback) => {
       // set up query
-      const queryString = "INSERT INTO bookposts (title, postimage, content, user_Id) VALUES ($1, $2, $3, $4)";
+      const queryString = "INSERT INTO bookposts (title, postimage, content, user_Id) VALUES ($1, $2, $3, $4) RETURNING *";
 
       const values = [
         post.title,
@@ -25,7 +25,21 @@ module.exports = (dbPoolInstance) => {
       });
     };
 
+    const getPostInfo = (params, callback) =>{
+      const queryString = "SELECT * FROM bookposts WHERE id = ($1)";
+      const values=[
+          params.id
+      ];
+      // execute query
+      dbPoolInstance.query(queryString, values, (error, queryResult) => {
+        // invoke callback function with results after query has executed
+        callback(error, queryResult);
+      });
+
+    }
+
     return {
-      createPost
+      createPost,
+      getPostInfo
     };
 };

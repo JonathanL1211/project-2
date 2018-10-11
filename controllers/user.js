@@ -115,7 +115,8 @@ module.exports = (db) => {
   const loggedOut = (request, response) => {
       response.clearCookie('loggedIn');
       response.clearCookie('Username');
-      response.clearCookie('ID cookie ');
+      response.clearCookie('userId');
+      response.clearCookie('postId');
       response.redirect('/');
    }
 
