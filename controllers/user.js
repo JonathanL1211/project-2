@@ -147,11 +147,18 @@ module.exports = (db) => {
    */
    const editProfile = (request, response) => {
       db.user.getUserInfo(request.params, (error, queryResult) => {
+          // console.log("querrrryryyyyyy editttttttt", queryResult.rows);
+          // console.log("EDIT------------------------------------------");
+          // console.log("cookies", request.cookies);
           if (error) {
             console.error('error getting user:', error);
             response.sendStatus(500);
           }
-          response.render('user/Edit', {results: queryResult.rows});
+          if(request.cookies['userId'] != queryResult.rows[0].id){
+            response.send("Cannot edit user!!");
+          }else{
+            response.render('user/Edit', {results: queryResult.rows});
+          }
       })
    }
 

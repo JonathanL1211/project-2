@@ -26,8 +26,8 @@ class Profile extends React.Component {
                     <div className="col-md-5 mt-3">
                         <div className="card border-dark border rounded" >
                             <div className="card-body">
-                                <h3 className="card-title">Profile Details</h3>
-                                <h5 className="card-subtitle mb-2 text-muted">Profile information</h5>
+                                <h1 className="card-title text-info">Profile Details</h1>
+                                <h3 className="card-subtitle mb-2 text-muted">Profile information</h3>
                                 <p> Name: {this.props.res[0].name} </p>
                                 <p> Biography: {this.props.res[0].bio} </p>
                                 <p> Contact: {this.props.res[0].phonenumber} </p>
@@ -40,7 +40,15 @@ class Profile extends React.Component {
             </div>
 
             <div className="container-fluid">
-
+                <div className="row">
+                    <div className="col-md-12 mt-3">
+                        <div className="card border-dark border rounded" >
+                            <div className="card-body">
+                                <h1 className="text-info">Blog post here</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </DefaultLayout>
     );
