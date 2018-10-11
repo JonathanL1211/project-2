@@ -23,8 +23,7 @@ class Profile extends React.Component {
             <div className="container-fluid mt-3">
                 <div className="row">
                     <div className="col-md-10 offset-md-1">
-                        <h1 className="text-primary mt-3">Post title #{this.props.res[0].id}: </h1>
-                        <h3 className="mt-3">{this.props.res[0].title}</h3>
+                        <h1 className="text-primary mt-3">Post title: <span className="text-info">{this.props.res[0].title}</span></h1>
                         <p className="text-muted mt-3"> {this.props.res[0].content}</p>
                     </div>
                 </div>
