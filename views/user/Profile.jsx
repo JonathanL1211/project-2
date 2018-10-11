@@ -7,13 +7,15 @@ class Profile extends React.Component {
     let editUrl = '/profile/' + this.props.res[0].id +'/edit';
     let newPostUrl = '/post';
 
-    let postThisProps = this.props.post;
-    let postTitles = postThisProps.map(titleName =>{
-        return (
-            <li>{titleName.title}</li>
-            )
-    })
 
+    let postThisProps = this.props.post;
+
+    let mapPostId = postThisProps.map((post) => {
+        let postIdUrl = '/post/' + post.id;
+        return (
+            <a href={postIdUrl}><li>{post.title}</li></a>
+            )
+    });
     return (
         <DefaultLayout title="Home">
             <nav className="navbar navbar-expand-lg navbar-light bg-info">
@@ -61,7 +63,7 @@ class Profile extends React.Component {
                             <div className="card-body">
                                 <h1 className="text-info">Posts: </h1>
                                 <ol>
-                                    <h3> {postTitles} </h3>
+                                    <h3> {mapPostId} </h3>
                                 </ol>
                             </div>
 

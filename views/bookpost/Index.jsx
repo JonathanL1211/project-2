@@ -2,8 +2,8 @@ var React = require("react");
 var DefaultLayout = require('../layout/DefaultLayout');
 class Profile extends React.Component {
   render() {
-    console.log("INDEXXXXXXXXXXX BOOOOKKKK-----------------------------------------");
-    console.log("this.props in INDEX BOOKPOST!: ", this.props);
+    // console.log("INDEXXXXXXXXXXX BOOOOKKKK-----------------------------------------");
+    // console.log("this.props in INDEX BOOKPOST!: ", this.props);
     return (
         <DefaultLayout title="Home">
             <nav className="navbar navbar-expand-lg navbar-light bg-info">
