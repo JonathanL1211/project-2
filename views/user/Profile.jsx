@@ -2,10 +2,18 @@ var React = require("react");
 var DefaultLayout = require('../layout/DefaultLayout');
 class Profile extends React.Component {
   render() {
-    //console.log("HOMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-    //console.log("this.props in HOME: ", this.props);
+    console.log("HOMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+    console.log("this.props in HOME: ", this.props);
     let editUrl = '/profile/' + this.props.res[0].id +'/edit';
     let newPostUrl = '/post';
+
+    let postThisProps = this.props.post;
+    let postTitles = postThisProps.map(titleName =>{
+        return (
+            <li>{titleName.title}</li>
+            )
+    })
+
     return (
         <DefaultLayout title="Home">
             <nav className="navbar navbar-expand-lg navbar-light bg-info">
@@ -45,10 +53,18 @@ class Profile extends React.Component {
                     <div className="col-md-12 mt-3">
                         <div className="card border-dark border rounded" >
                             <div className="card-body">
-                                <h1 className="text-info">Blog post here</h1>
+                                <h1 className="text-info">Create Blog post here</h1>
                                 <h3>---- Image here ----</h3>
-                                <a href={newPostUrl}><input className="btn btn-primary ml-2" type="button" value="New"/></a>
+                                <a href={newPostUrl}><input className="btn btn-primary ml-2" type="button" value="Create"/></a>
                             </div>
+                            <hr/>
+                            <div className="card-body">
+                                <h1 className="text-info">Posts: </h1>
+                                <ol>
+                                    <h3> {postTitles} </h3>
+                                </ol>
+                            </div>
+
                         </div>
                     </div>
                 </div>

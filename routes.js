@@ -34,6 +34,7 @@ module.exports = (app, db) => {
    */
    //new book posts form
    app.get('/post', bookPosts.newPostForm);
+   app.post('/posts', bookPosts.createPost);
 
 
   /*

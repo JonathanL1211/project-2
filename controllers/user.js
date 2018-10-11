@@ -127,15 +127,16 @@ module.exports = (db) => {
    //Displaying user index page
   const userProfile = (request, response) => {
     //console.log("Rest cookies: ", request.cookies)
-      db.user.profile(request.params, (err, queryResult) => {
+      db.user.profile(request.params, (err, firstqueryResult, secondqueryResult) => {
           if (err) {
             console.error('error getting user:', err);
             response.sendStatus(500);
           }
           else {
             //if(request.params === )
-            //console.log("QUERY RESULTS.ROWS: ", queryResult.rows);
-            response.render('user/Profile', {res: queryResult.rows, cookie:request.cookies});
+            //console.log("QUERY RESULTS.ROWS USER PROFILE111111 =------------: ", firstqueryResult);
+            //console.log("QUERY RESULTS.ROWS USER PROFILE222222 =------------: ", secondqueryResult);
+            response.render('user/Profile', {res: firstqueryResult.rows, post: secondqueryResult.rows, cookie:request.cookies});
           }
       })
   }

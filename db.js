@@ -39,7 +39,7 @@ module.exports = {
    * ADD APP MODELS HERE
    */
 
-   user:user(pool),
+   user: user(pool),
    bookpost: bookpost(pool),
 
    //make queries directly from here
