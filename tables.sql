@@ -20,5 +20,6 @@ CREATE TABLE IF NOT EXISTS bookPosts (
 CREATE TABLE IF NOT EXISTS comments (
 	id SERIAL PRIMARY KEY,
 	bookPosts_id INTEGER,
+	user_id INTEGER,
 	commentContents TEXT
 );

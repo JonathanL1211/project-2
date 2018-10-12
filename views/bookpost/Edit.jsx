@@ -15,7 +15,7 @@ class EditPage extends React.Component {
         <DefaultLayout title="Home">
         <div className="container">
             <div className="row mt-4">
-                <div className="col-md-4 offset-md-4">
+                <div className="col-md-8 offset-md-2">
                     <div className="card border-dark border rounded" >
                         <div className="card-body">
                             <form method="POST" action={actionUrl} id="newPostForm">
