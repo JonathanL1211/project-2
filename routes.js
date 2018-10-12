@@ -1,7 +1,8 @@
 module.exports = (app, db) => {
 
   const users = require('./controllers/user')(db);
-  const bookPosts = require('./controllers/bookPost')(db)
+  const bookPosts = require('./controllers/bookPost')(db);
+  const comments = require('./controllers/comment')(db);
 
   /*
    *  =========================================
@@ -46,9 +47,12 @@ module.exports = (app, db) => {
 
   /*
    *  =========================================
-   *  Tweets
+   *  Comments
    *  =========================================
    */
+   //app.get('/post/:id/comment', comments.createComment);
+   app.post('/post/:id/comment', comments.createComment);
+
 
    // app.get('/tweets/new', tweets.tweetBox);
    // app.post('/tweets', tweets.createTweet);

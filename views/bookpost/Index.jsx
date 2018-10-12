@@ -3,8 +3,19 @@ var DefaultLayout = require('../layout/DefaultLayout');
 class Profile extends React.Component {
   render() {
     let editUrl = '/post/' + this.props.res[0].id + '/edit';
-    // console.log("INDEXXXXXXXXXXX BOOOOKKKK-----------------------------------------");
-    // console.log("this.props in INDEX BOOKPOST!: ", this.props);
+    let commentUrl = '/post/' + this.props.res[0].id + '/comment';
+    console.log("INDEXXXXXXXXXXX BOOOOKKKK-----------------------------------------");
+    console.log("this.props in INDEX BOOKPOST!: ", this.props);
+
+    let mapComment = this.props.post.map((post)=>{
+        return (
+            <div>
+                <p> {post.commentcontents} by user {post.user_id}</p>
+                <hr/>
+            </div>
+            )
+    })
+
     return (
         <DefaultLayout title="Home">
             <nav className="navbar navbar-expand-lg navbar-light bg-info">
@@ -34,9 +45,22 @@ class Profile extends React.Component {
                         <a href='#'><input className="btn btn-primary ml-2" type="button" value="Delete"/></a>
                     </div>
                 </div>
+
+                <div className="row displayingComments">
+                    <div className="col-md-10 offset-md-1">
+                        <p className="text-muted mt-3"> {mapComment}</p>
+                    </div>
+                </div>
+
+
                 <div className="row comments">
                     <div className="col-md-10 offset-md-1">
                         <h1 className="text-danger">Comments: </h1>
+                        <form method="POST" action={commentUrl}>
+                            <textarea name="commentContent" className="form-control" rows="4"></textarea>
+                            <br/>
+                            <input name="submit" className="btn btn-primary" type="submit" value="Post Comment" />
+                        </form>
                     </div>
                 </div>
             </div>

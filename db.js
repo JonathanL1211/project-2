@@ -2,6 +2,7 @@ const pg = require('pg');
 const url = require('url');
 const user = require('./models/user');
 const bookpost = require('./models/bookpost');
+const comment = require('./models/comment');
 var configs;
 
 if( process.env.DATABASE_URL ){
@@ -41,6 +42,7 @@ module.exports = {
 
    user: user(pool),
    bookpost: bookpost(pool),
+   comment: comment(pool),
 
    //make queries directly from here
   queryInterface: (text, params, callback) => {

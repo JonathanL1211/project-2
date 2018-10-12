@@ -37,8 +37,11 @@ module.exports = (dbPoolInstance) => {
       ];
       // execute query
       dbPoolInstance.query(queryString, values, (error, queryResult) => {
-        // invoke callback function with results after query has executed
-        callback(error, queryResult);
+        const firstQueryString = queryResult;
+        let queryString2 = "SELECT * FROM comments WHERE bookposts_id = '" + params.id + "';";
+        dbPoolInstance.query(queryString2, (err, res) =>{
+            callback(err, firstQueryString, res);
+        })
       });
 
     }
