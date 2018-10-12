@@ -34,6 +34,11 @@ class Profile extends React.Component {
                         <a href='#'><input className="btn btn-primary ml-2" type="button" value="Delete"/></a>
                     </div>
                 </div>
+                <div className="row comments">
+                    <div className="col-md-10 offset-md-1">
+                        <h1 className="text-danger">Comments: </h1>
+                    </div>
+                </div>
             </div>
         </DefaultLayout>
     );

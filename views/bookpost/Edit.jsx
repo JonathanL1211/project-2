@@ -2,8 +2,8 @@ var React = require("react");
 var DefaultLayout = require('../layout/DefaultLayout');
 class EditPage extends React.Component {
   render() {
-    console.log('-----------------------------------');
-    console.log('EDIITTTTTTTTT THIS.PROPSSSSSSS: ',this.props.res);
+    // console.log('-----------------------------------');
+    // console.log('EDIITTTTTTTTT THIS.PROPSSSSSSS: ',this.props.res);
     let postId= this.props.res[0].id;
     let actionUrl = '/post/' + postId + '/?_method=PUT';
     let defaultInputValue = {

@@ -54,8 +54,11 @@ module.exports = (db) => {
           console.error('error getting user:', err);
           response.sendStatus(500);
         }
+        if(queryResult.rows[0].user_id != request.cookies['userId']){
+          response.send('CANNOT EDIT POSTS FROM OTHER USERS!');
+        }
         else {
-          console.log("edittt formrmmmmmmmmmm----------------------:", queryResult);
+          console.log("edittt formrmmmmmmmmmm----------------------:", queryResult.rows);
           response.render('bookpost/Edit', {res:queryResult.rows});
         }
       })
