@@ -43,12 +43,24 @@ module.exports = (dbPoolInstance) => {
 
     }
 
-    const edit = (params, callback) => {
-      const queryString = "SELECT "
+    const updatePost = (post, params, callback) => {
+      const queryString = "UPDATE bookposts SET title = ($1), postimage = ($2), content = ($3) WHERE id = ($4)";
+      const values = [
+        post.title,
+        post.postimage,
+        post.content,
+        params.id
+      ];
+      // execute query
+        dbPoolInstance.query(queryString, values, (error, queryResult) => {
+          // invoke callback function with results after query has executed
+          callback(error, queryResult);
+        });
     }
 
     return {
       createPost,
-      getPostInfo
+      getPostInfo,
+      updatePost
     };
 };

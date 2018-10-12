@@ -61,12 +61,27 @@ module.exports = (db) => {
       })
   }
 
+  const update = (request, response) => {
+      db.bookpost.updatePost(request.body, request.params,(err, queryResult) => {
+        if (err) {
+          console.error('error getting user:', err);
+          response.sendStatus(500);
+        }
+        if (queryResult.rowCount >= 1) {
+            response.redirect('/post/' + request.params.id);
+        } else {
+            response.send('NOT UPDATED!');
+        }
+      })
+  }
+
 
   return{
       newPostForm,
       createPost,
       displayPostPage,
-      editPostPage
+      editPostPage,
+      update
   };
 
 };
