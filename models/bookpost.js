@@ -43,6 +43,10 @@ module.exports = (dbPoolInstance) => {
 
     }
 
+    const edit = (params, callback) => {
+      const queryString = "SELECT "
+    }
+
     return {
       createPost,
       getPostInfo

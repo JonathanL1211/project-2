@@ -39,6 +39,10 @@ module.exports = (app, db) => {
   //display book post page!
   app.get('/post/:id', bookPosts.displayPostPage);
 
+  //edit book post
+  app.get('/post/:id/edit', bookPosts.editPostPage);
+  app.put('/post/:id');
+
 
   /*
    *  =========================================

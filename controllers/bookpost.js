@@ -48,12 +48,25 @@ module.exports = (db) => {
       })
   };
 
+  const editPostPage = (request, response) => {
+      db.bookpost.getPostInfo(request.params, (err, queryResult) => {
+        if (err) {
+          console.error('error getting user:', err);
+          response.sendStatus(500);
+        }
+        else {
+          console.log("edittt formrmmmmmmmmmm----------------------:", queryResult);
+          response.render('bookpost/Edit', {res:queryResult.rows});
+        }
+      })
+  }
 
 
   return{
       newPostForm,
       createPost,
-      displayPostPage
+      displayPostPage,
+      editPostPage
   };
 
 };
