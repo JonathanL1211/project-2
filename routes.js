@@ -28,6 +28,9 @@ module.exports = (app, db) => {
   app.get('/profile/:id/edit', users.editProfile)
   app.put('/profile/:id', users.update);
 
+  //Delete User
+
+
   /*
    *  =========================================
    *  Book Posts
@@ -44,6 +47,9 @@ module.exports = (app, db) => {
   app.get('/post/:id/edit', bookPosts.editPostPage);
   app.put('/post/:id', bookPosts.update);
 
+  //Delete book post
+  app.get('/post/:id/delete', bookPosts.deletePost);
+  app.delete('/post/:id',bookPosts.deletePost);
 
   /*
    *  =========================================

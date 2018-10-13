@@ -40,11 +40,7 @@ module.exports = (dbPoolInstance) => {
         const firstQueryString = queryResult;
         let queryString2 = "SELECT * FROM comments WHERE bookposts_id = '" + params.id + "';";
         dbPoolInstance.query(queryString2, (err, res) =>{
-            const secondQueryString = res;
-            let queryString3 = "SELECT users.name, users.id, comments.commentcontents FROM users INNER JOIN comments ON users.id = comments.user_id;";
-            dbPoolInstance.query(queryString3, (err, result) =>{
-                callback(err, firstQueryString, secondQueryString, result);
-            })
+            callback(err, firstQueryString, res);
         })
       });
 
@@ -65,9 +61,22 @@ module.exports = (dbPoolInstance) => {
         });
     }
 
+    const deletePost = (params, callback) => {
+        const queryString = "DELETE from bookposts WHERE id = ($1)";
+        const values = [
+            params.id
+        ];
+        // execute query
+        dbPoolInstance.query(queryString, values, (error, queryResult) => {
+        // invoke callback function with results after query has executed
+          callback(error, queryResult);
+        });
+    }
+
     return {
       createPost,
       getPostInfo,
-      updatePost
+      updatePost,
+      deletePost
     };
 };

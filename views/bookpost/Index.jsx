@@ -4,6 +4,7 @@ class Profile extends React.Component {
   render() {
     let editUrl = '/post/' + this.props.res[0].id + '/edit';
     let commentUrl = '/post/' + this.props.res[0].id + '/comment';
+    let deleteUrl = '/post/' + this.props.res[0].id + '/delete';
     // let commentUserUrl = '/profile/' + this.props.post[0].user_id;
     console.log("INDEXXXXXXXXXXX BOOOOKKKK-----------------------------------------");
     console.log("this.props in INDEX BOOKPOST!: ", this.props.comment);
@@ -49,7 +50,7 @@ class Profile extends React.Component {
                 <div className="row edit">
                     <div className="col-md-10 offset-md-1">
                         <a href={editUrl}><input className="btn btn-primary" type="button" value="Edit"/></a>
-                        <a href='#'><input className="btn btn-primary ml-2" type="button" value="Delete"/></a>
+                        <a href={deleteUrl}><input className="btn btn-primary ml-2" type="button" value="Delete"/></a>
                     </div>
                 </div>
 

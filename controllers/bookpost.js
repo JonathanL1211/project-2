@@ -36,7 +36,7 @@ module.exports = (db) => {
   }
 
   const displayPostPage = (request, response) =>{
-      db.bookpost.getPostInfo(request.params, (err, firstqueryResult, secondqueryResult, thirdqueryResult)=>{
+      db.bookpost.getPostInfo(request.params, (err, firstqueryResult, secondqueryResult)=>{
           if (err) {
             console.error('error getting user:', err);
             response.sendStatus(500);
@@ -44,8 +44,7 @@ module.exports = (db) => {
           else {
             console.log("displayyy----------------------:", firstqueryResult);
             console.log("displayyy 2nd----------------------:", secondqueryResult);
-            console.log("displayyy 3rd----------------------:", thirdqueryResult);
-            response.render('bookpost/Index', {res: firstqueryResult.rows, comment: secondqueryResult.rows, comm: thirdqueryResult.rows});
+            response.render('bookpost/Index', {res: firstqueryResult.rows, comment: secondqueryResult.rows});
           }
       })
   };
@@ -80,13 +79,29 @@ module.exports = (db) => {
       })
   }
 
+  const deletePost = (request, response) => {
+     db.bookpost.deletePost(request.params, (err, queryResult)=>{
+        console.log('QUERYRESULTS for DELETE!', queryResult);
+        if (err) {
+          console.error('error getting user:', err);
+          response.sendStatus(500);
+        }
+        if (queryResult.rowCount >= 1) {
+            response.redirect('/home');
+        } else {
+            response.send('NOT UPDATED!');
+        }
+     })
+  }
+
 
   return{
       newPostForm,
       createPost,
       displayPostPage,
       editPostPage,
-      update
+      update,
+      deletePost
   };
 
 };
