@@ -4,18 +4,25 @@ class Profile extends React.Component {
   render() {
     let editUrl = '/post/' + this.props.res[0].id + '/edit';
     let commentUrl = '/post/' + this.props.res[0].id + '/comment';
+    // let commentUserUrl = '/profile/' + this.props.post[0].user_id;
     console.log("INDEXXXXXXXXXXX BOOOOKKKK-----------------------------------------");
-    console.log("this.props in INDEX BOOKPOST!: ", this.props);
+    console.log("this.props in INDEX BOOKPOST!: ", this.props.comment);
 
-    let mapComment = this.props.post.map((post)=>{
-        return (
-            <div>
-                <p> {post.commentcontents} by user {post.user_id}</p>
-                <hr/>
-            </div>
-            )
+    var mapComment = this.props.comment.map((post)=>{
+        return <div> &nbsp; </div> //$nbsp; space!
     })
+    if (this.props.comment.length > 0){
 
+        var mapComment = this.props.comment.map((post)=>{
+            var commentUserUrl = '/profile/' + post.user_id;
+            return (
+                <div>
+                    <h3>{post.commentcontents} <span><small><a href={commentUserUrl}>{post.user_id}</a></small></span></h3>
+                    <hr/>
+                </div>
+                )
+        })
+    }
     return (
         <DefaultLayout title="Home">
             <nav className="navbar navbar-expand-lg navbar-light bg-info">
@@ -47,8 +54,8 @@ class Profile extends React.Component {
                 </div>
 
                 <div className="row displayingComments">
-                    <div className="col-md-10 offset-md-1">
-                        <p className="text-muted mt-3"> {mapComment}</p>
+                    <div className="col-md-10 offset-md-1 mt-5 text-muted">
+                        {mapComment}
                     </div>
                 </div>
 

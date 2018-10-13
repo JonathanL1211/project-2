@@ -36,14 +36,16 @@ module.exports = (db) => {
   }
 
   const displayPostPage = (request, response) =>{
-      db.bookpost.getPostInfo(request.params, (err, firstqueryResult, secondqueryResult)=>{
+      db.bookpost.getPostInfo(request.params, (err, firstqueryResult, secondqueryResult, thirdqueryResult)=>{
           if (err) {
             console.error('error getting user:', err);
             response.sendStatus(500);
           }
           else {
-            //console.log("displayyy----------------------:", queryResult);
-            response.render('bookpost/Index', {res: firstqueryResult.rows, post: secondqueryResult.rows});
+            console.log("displayyy----------------------:", firstqueryResult);
+            console.log("displayyy 2nd----------------------:", secondqueryResult);
+            console.log("displayyy 3rd----------------------:", thirdqueryResult);
+            response.render('bookpost/Index', {res: firstqueryResult.rows, comment: secondqueryResult.rows, comm: thirdqueryResult.rows});
           }
       })
   };

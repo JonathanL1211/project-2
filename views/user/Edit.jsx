@@ -2,7 +2,7 @@ var React = require("react");
 var DefaultLayout = require('../layout/DefaultLayout');
 class EditPage extends React.Component {
   render() {
-    console.log('EDIITTTTTTTTT: ',this.props.results);
+    //console.log('EDIITTTTTTTTT: ',this.props.results);
     let userId= this.props.results[0].id;
     let actionUrl = '/profile/' + userId + '/?_method=PUT';
     let defaultInputValue = {

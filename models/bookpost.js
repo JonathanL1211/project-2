@@ -40,7 +40,11 @@ module.exports = (dbPoolInstance) => {
         const firstQueryString = queryResult;
         let queryString2 = "SELECT * FROM comments WHERE bookposts_id = '" + params.id + "';";
         dbPoolInstance.query(queryString2, (err, res) =>{
-            callback(err, firstQueryString, res);
+            const secondQueryString = res;
+            let queryString3 = "SELECT users.name, users.id, comments.commentcontents FROM users INNER JOIN comments ON users.id = comments.user_id;";
+            dbPoolInstance.query(queryString3, (err, result) =>{
+                callback(err, firstQueryString, secondQueryString, result);
+            })
         })
       });
 
