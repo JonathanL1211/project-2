@@ -4,7 +4,7 @@ class NewPostForm extends React.Component {
 
   render() {
     return (
-        <DefaultLayout title="Home">
+        <DefaultLayout title="New post">
         <div className="container">
             <div className="row mt-4">
                 <div className="col-md-8 offset-md-2">

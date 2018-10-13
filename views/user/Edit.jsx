@@ -11,7 +11,7 @@ class EditPage extends React.Component {
         bio: this.props.results[0].bio
     };
     return (
-        <DefaultLayout title="Home">
+        <DefaultLayout title="Edit">
         <div className="container">
             <div className="row mt-4">
                 <div className="col-md-4 offset-md-4">

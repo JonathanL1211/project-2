@@ -12,7 +12,7 @@ class EditPage extends React.Component {
         userId: this.props.res[0].user_id
     };
     return (
-        <DefaultLayout title="Home">
+        <DefaultLayout title="Edit Post">
         <div className="container">
             <div className="row mt-4">
                 <div className="col-md-8 offset-md-2">

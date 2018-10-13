@@ -3,7 +3,7 @@ var DefaultLayout = require('../layout/DefaultLayout');
 class HomePage extends React.Component {
   render() {
     return (
-        <DefaultLayout title="Home">
+        <DefaultLayout title="Create User">
         <div className="container">
             <div className="row mt-4">
                 <div className="col-md-4 offset-md-4">
