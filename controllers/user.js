@@ -197,10 +197,15 @@ module.exports = (db) => {
           response.sendStatus(500);
         }
         if (queryResult.rowCount >= 1) {
-            response.clearCookie('loggedIn');
-            response.clearCookie('Username');
-            response.clearCookie('userId');
-            response.redirect('/');
+            if(request.cookies['userId'] != request.params.id){
+                response.send('Cannot DELETE USER!')
+            }
+            else{
+                response.clearCookie('loggedIn');
+                response.clearCookie('Username');
+                response.clearCookie('userId');
+                response.redirect('/');
+            }
         } else {
             response.send('NOT UPDATED!');
         }
