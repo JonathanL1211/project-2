@@ -13,9 +13,12 @@ class DefaultLayout extends React.Component {
             <link rel="stylesheet" type="text/css" href="css/styles.css"></link>
         </head>
         <body>
+            <div className="bg">
+            </div>
             <div className="fluid-container">
                 {this.props.children}
             </div>
+
         </body>
         </html>
     );
