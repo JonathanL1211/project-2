@@ -95,6 +95,19 @@ module.exports = (dbPoolInstance) => {
         });
     }
 
+    //deleting profile
+    const deleteUser = (params, callback) => {
+        const queryString = "DELETE FROM users WHERE id = ($1)";
+        const values = [
+            params.id
+        ];
+        // execute query
+        dbPoolInstance.query(queryString, values, (error, queryResult) => {
+        // invoke callback function with results after query has executed
+          callback(error, queryResult);
+        });
+    }
+
     //  /**
    // * ===========================================
    // * User's profile
@@ -109,12 +122,15 @@ module.exports = (dbPoolInstance) => {
     }
 
 
+
+
     return {
       create,
       login,
       profile,
       getUserInfo,
       update,
+      deleteUser,
       homepagePost
     };
 };

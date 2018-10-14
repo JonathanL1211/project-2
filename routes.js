@@ -29,6 +29,8 @@ module.exports = (app, db) => {
   app.put('/profile/:id', users.update);
 
   //Delete User
+  app.get('/profile/:id/delete', users.deleteUser);
+  app.delete('/profile/:id',users.deleteUser);
 
 
   /*

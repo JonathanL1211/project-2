@@ -6,6 +6,7 @@ class Profile extends React.Component {
     // console.log("this.props in HOME: ", this.props);
     let editUrl = '/profile/' + this.props.res[0].id +'/edit';
     let newPostUrl = '/post';
+    let deleteUrl = '/profile/' + this.props.res[0].id + '/delete';
 
 
     let postThisProps = this.props.post;
@@ -43,7 +44,7 @@ class Profile extends React.Component {
                                 <p> Biography: {this.props.res[0].bio} </p>
                                 <p> Contact: {this.props.res[0].phonenumber} </p>
                                 <a href={editUrl}><input className="btn btn-primary" type="button" value="Edit"/></a>
-                                <a href='#'><input className="btn btn-primary ml-2" type="button" value="Delete"/></a>
+                                <a href={deleteUrl}><input className="btn btn-primary ml-2" type="button" value="Delete"/></a>
                             </div>
                         </div>
                     </div>

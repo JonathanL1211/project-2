@@ -7,20 +7,6 @@ module.exports = (db) => {
    * Controller logics
    * ===========================================
    */
-   //Redirect to homepage
-   const redirectHome = (request, response) => {
-     // console.log("HERREEEEEEEEEEEEEEEEEEEEE");
-     // console.log(request.cookies);
-     db.user.homepagePost((error, queryResult)=>{
-        if (request.cookies['loggedIn'] !== undefined){
-            response.render('user/Home', {cookie: request.cookies, res: queryResult.rows});
-        }
-        else {
-            response.send("You are not logged in!")
-        }
-     })
-
-   }
    /**
    * ===========================================
    * Register form
@@ -109,6 +95,20 @@ module.exports = (db) => {
       })
   }
 
+  //Redirect to homepage
+   const redirectHome = (request, response) => {
+     // console.log("HERREEEEEEEEEEEEEEEEEEEEE");
+     // console.log(request.cookies);
+     db.user.homepagePost((error, queryResult)=>{
+        if (request.cookies['loggedIn'] !== undefined){
+            response.render('user/Home', {cookie: request.cookies, res: queryResult.rows});
+        }
+        else {
+            response.send("You are not logged in!")
+        }
+     })
+
+   }
     /**
    * ===========================================
    * Logout function for user
@@ -119,7 +119,7 @@ module.exports = (db) => {
       response.clearCookie('loggedIn');
       response.clearCookie('Username');
       response.clearCookie('userId');
-      response.clearCookie('postId');
+      //response.clearCookie('postId');
       response.redirect('/');
    }
 
@@ -184,6 +184,29 @@ module.exports = (db) => {
       })
    }
 
+   /**
+   * ===========================================
+   * Deleting profile
+   * ===========================================
+   */
+   const deleteUser = (request, response) => {
+     db.user.deleteUser(request.params, (err, queryResult)=>{
+        console.log('QUERYRESULTS for DELETE!', queryResult);
+        if (err) {
+          console.error('error getting user:', err);
+          response.sendStatus(500);
+        }
+        if (queryResult.rowCount >= 1) {
+            response.clearCookie('loggedIn');
+            response.clearCookie('Username');
+            response.clearCookie('userId');
+            response.redirect('/');
+        } else {
+            response.send('NOT UPDATED!');
+        }
+     })
+  }
+
 
 
   // const otherUserProfile = (request, response) => {
@@ -225,7 +248,8 @@ module.exports = (db) => {
     loggedOut,
     userProfile,
     editProfile,
-    update
+    update,
+    deleteUser
   };
 
 };

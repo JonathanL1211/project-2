@@ -28,7 +28,7 @@ module.exports = (db) => {
         } else {
             console.log('Post not created!');
         }
-        response.cookie('postId', queryResult.rows[0].id);
+        //response.cookie('postId', queryResult.rows[0].id);
         // redirect to home page after creation
         response.redirect('/profile/' + request.cookies['userId']);
 
