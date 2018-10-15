@@ -1,0 +1,36 @@
+{
+  "name": "project-2",
+  "version": "1.0.0",
+  "description": "Project2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonathanL1211/project-2.git"
+  },
+  "author": "Jonathan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonathanL1211/project-2/issues"
+  },
+  "homepage": "https://github.com/JonathanL1211/project-2#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "express-fileupload": "^1.0.0-alpha.1",
+    "express-react-views": "^0.10.5",
+    "js-sha256": "^0.9.0",
+    "method-override": "^3.0.0",
+    "pg": "^7.5.0",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "sha256": "^0.2.0",
+    "url": "^0.11.0"
+  },
+  "engines" : {
+    "node" : "^6.6.0"
+    }
+}

@@ -52,9 +52,9 @@ app.get('/', (request, response) => {
  * Listen to requests on port 3000
  * ===================================
  */
-const PORT = process.env.PORT || 3000;
+//const PORT = process.env.PORT || 3000;
 
-const server = app.listen(PORT, () => console.log('~~~ Tuning in to the waves of port '+PORT+' ~~~'));
+//const server = app.listen(PORT, () => console.log('~~~ Tuning in to the waves of port '+PORT+' ~~~'));
 
 // Run clean up actions when server shuts down
 server.on('close', () => {
