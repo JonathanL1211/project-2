@@ -7,7 +7,8 @@ class Profile extends React.Component {
     let deleteUrl = '/post/' + this.props.res[0].id + '/delete';
     // let commentUserUrl = '/profile/' + this.props.post[0].user_id;
     console.log("INDEXXXXXXXXXXX BOOOOKKKK-----------------------------------------");
-    console.log("this.props in INDEX BOOKPOST!: ", this.props.comment);
+    console.log("this.props in INDEX BOOKPOST!: ", this.props);
+    var imageLink = this.props.res[0].postimage;
 
     var mapComment = this.props.comment.map((post)=>{
         return <div> &nbsp; </div> //$nbsp; space!
@@ -44,6 +45,7 @@ class Profile extends React.Component {
                 <div className="row">
                     <div className="col-md-10 offset-md-1">
                         <h1 className="text-primary mt-3">Post title: <span className="text-info">{this.props.res[0].title}</span></h1>
+                        <img width="200px" height="300px" src={imageLink}/>
                         <p className="text-muted mt-3"> {this.props.res[0].content}</p>
                     </div>
                 </div>

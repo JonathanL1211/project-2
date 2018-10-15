@@ -12,7 +12,9 @@ module.exports = (db) => {
    }
 
    const createPost = (request, response) => {
-      db.bookpost.createPost(request.body, request.cookies, (error, queryResult) => {
+      let path = '/media/';
+      db.bookpost.createPost(request.body, request.cookies, request.files.postimage, path, (error, queryResult) => {
+        console.log("request.file for createPOST-----------------", request.files.postimage)
         console.log("request.body for CREATEPOST-------------------------------: ", request.body);
         console.log('QUERYRESULTS NEW POST -----------------**********------: ', queryResult.rows);
         if (error) {
@@ -21,7 +23,18 @@ module.exports = (db) => {
         }
         if (queryResult.rowCount >= 1) {
             console.log('Created post successfully!');
-
+            if (!request.files){
+                    return response.status(400).send('No files were uploaded.');
+                }
+                // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+                let sampleFile = request.files.postimage;
+                // Use the mv() method to place the file somewhere on your server
+                sampleFile.mv('public/media/' + sampleFile.name, function(err) {
+                  if (err){
+                    return response.status(500).send(err);
+                  }
+                  console.log('File uploaded!');
+                })
           //if (request.body)
 
           //response.cookie('username', request.body.name);

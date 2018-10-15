@@ -12,13 +12,13 @@ module.exports = (dbPoolInstance) => {
    * Creating and Displaying posts
    * ===========================================
    */
-    const createPost = (post, cookie, callback) => {
+    const createPost = (post, cookie, files, path, callback) => {
       // set up query
       const queryString = "INSERT INTO bookposts (title, postimage, content, user_Id) VALUES ($1, $2, $3, $4) RETURNING *";
-
+      const pathImage = path + files.name;
       const values = [
         post.title,
-        post.postimage,
+        pathImage,
         post.content,
         cookie['userId']
       ];
