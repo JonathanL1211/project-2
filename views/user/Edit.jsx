@@ -2,7 +2,7 @@ var React = require("react");
 var DefaultLayout = require('../layout/DefaultLayout');
 class EditPage extends React.Component {
   render() {
-    //console.log('EDIITTTTTTTTT: ',this.props.results);
+    console.log('EDIITTTTTTTTT: ',this.props.results);
     let userId= this.props.results[0].id;
     let actionUrl = '/profile/' + userId + '/?_method=PUT';
     let defaultInputValue = {
@@ -14,10 +14,10 @@ class EditPage extends React.Component {
         <DefaultLayout title="Edit">
         <div className="container">
             <div className="row mt-4">
-                <div className="col-md-4 offset-md-4">
+                <div className="col-md-6 offset-md-3">
                     <div className="card border-dark border rounded" >
                         <div className="card-body">
-                            <form method="POST" action={actionUrl}>
+                            <form method="POST" action={actionUrl} encType="multipart/form-data">
                                 <h1 className="form-heading" style={ {marginTop: '20px'} }>Edit Profile</h1>
                                 <div className="register form-group">
                                     Name: <input name="name" className="form-control" type="text" value={defaultInputValue.name}required/>

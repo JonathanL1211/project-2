@@ -75,14 +75,14 @@ module.exports = (dbPoolInstance) => {
     }
 
     //UPDATING profile
-    const update = (user, params, callback) => {
+    const update = (user, params, files, path, callback) => {
 
         var hashedValue = sha256(user.password);
         let queryString = "UPDATE users SET name = ($1), profileimage = ($2), hashedPassword = ($3), phoneNumber = ($4), bio = ($5) WHERE id = ($6) RETURNING *";
-
+        const pathImage = path + files.name;
         const values = [
             user.name,
-            user.image,
+            pathImage,
             hashedValue,
             user.contact,
             user.bio,

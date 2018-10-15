@@ -46,11 +46,12 @@ module.exports = (dbPoolInstance) => {
 
     }
 
-    const updatePost = (post, params, callback) => {
+    const updatePost = (post, params, files, path, callback) => {
       const queryString = "UPDATE bookposts SET title = ($1), postimage = ($2), content = ($3) WHERE id = ($4)";
+      const pathImage = path + files.name;
       const values = [
         post.title,
-        post.postimage,
+        pathImage,
         post.content,
         params.id
       ];

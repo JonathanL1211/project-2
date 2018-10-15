@@ -79,12 +79,25 @@ module.exports = (db) => {
   }
 
   const update = (request, response) => {
-      db.bookpost.updatePost(request.body, request.params,(err, queryResult) => {
+      let path = '/media/';
+      db.bookpost.updatePost(request.body, request.params, request.files.postimage, path, (err, queryResult) => {
         if (err) {
           console.error('error getting user:', err);
           response.sendStatus(500);
         }
         if (queryResult.rowCount >= 1) {
+            if (!request.files){
+                return response.status(400).send('No files were uploaded.');
+            }
+            // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+            let sampleFile = request.files.postimage;
+            // Use the mv() method to place the file somewhere on your server
+            sampleFile.mv('public/media/' + sampleFile.name, function(err) {
+              if (err){
+                return response.status(500).send(err);
+              }
+              console.log('File uploaded!');
+            })
             response.redirect('/post/' + request.params.id);
         } else {
             response.send('NOT UPDATED!');

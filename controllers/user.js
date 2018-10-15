@@ -162,8 +162,8 @@ module.exports = (db) => {
    */
    const editProfile = (request, response) => {
       db.user.getUserInfo(request.params, (error, queryResult) => {
-          // console.log("querrrryryyyyyy editttttttt", queryResult.rows);
-          // console.log("EDIT------------------------------------------");
+          console.log("querrrryryyyyyy editttttttt", queryResult.rows);
+          console.log("EDIT------------------------------------------");
           // console.log("cookies", request.cookies);
           if (error) {
             console.error('error getting user:', error);
@@ -178,7 +178,8 @@ module.exports = (db) => {
    }
 
    const update = (request, response) => {
-      db.user.update(request.body, request.params, (error, queryResult) => {
+      let path = '/media/';
+      db.user.update(request.body, request.params, request.files.image, path, (error, queryResult) => {
         // console.log("request.body for UPDATE: ", request.body);
         console.log('UPDATEEEEEEEEEEEEEEEEEEEEEEE------------');
         //console.log('QUERYRESULTS UPDATEEEEEEEE: ', queryResult.rows);
@@ -187,6 +188,18 @@ module.exports = (db) => {
             response.sendStatus(500);
         }
         if (queryResult.rowCount >= 1) {
+            if (!request.files){
+                return response.status(400).send('No files were uploaded.');
+            }
+            // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+            let sampleFile = request.files.image;
+            // Use the mv() method to place the file somewhere on your server
+            sampleFile.mv('public/media/' + sampleFile.name, function(err) {
+              if (err){
+                return response.status(500).send(err);
+              }
+              console.log('File uploaded!');
+            })
             response.redirect('/home');
         } else {
             response.send('NOT UPDATED!');

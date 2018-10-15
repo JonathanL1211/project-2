@@ -18,7 +18,7 @@ class EditPage extends React.Component {
                 <div className="col-md-8 offset-md-2">
                     <div className="card border-dark border rounded" >
                         <div className="card-body">
-                            <form method="POST" action={actionUrl} id="newPostForm">
+                            <form method="POST" action={actionUrl} id="newPostForm" encType="multipart/form-data">
                                 <h1 className="form-heading" style={ {marginTop: '20px'} }>Edit book post</h1>
                                 <div className="newPost form-group">
                                     Title: <input name="title" className="form-control" type="text" value={defaultInputValue.title} required/>
