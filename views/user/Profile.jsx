@@ -2,11 +2,13 @@ var React = require("react");
 var DefaultLayout = require('../layout/DefaultLayout');
 class Profile extends React.Component {
   render() {
-    // console.log("HOMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-    // console.log("this.props in HOME: ", this.props);
+    console.log("HOMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+    console.log("this.props in HOME: ", this.props);
+    console.log("this.props in profile image: ", this.props.res[0].profileimage);
     let editUrl = '/profile/' + this.props.res[0].id +'/edit';
     let newPostUrl = '/post';
     let deleteUrl = '/profile/' + this.props.res[0].id + '/delete';
+    var imageLink = this.props.res[0].profileimage;
 
 
     let postThisProps = this.props.post;
@@ -41,6 +43,7 @@ class Profile extends React.Component {
                                 <h1 className="card-title text-info">Profile Details</h1>
                                 <h3 className="card-subtitle mb-2 text-muted">Profile information</h3>
                                 <p> Name: {this.props.res[0].name} </p>
+                                <img width="200px" height="200px" src={imageLink} />
                                 <p> Biography: {this.props.res[0].bio} </p>
                                 <p> Contact: {this.props.res[0].phonenumber} </p>
                                 <a href={editUrl}><input className="btn btn-primary" type="button" value="Edit"/></a>
@@ -57,7 +60,6 @@ class Profile extends React.Component {
                         <div className="card border-dark border rounded" >
                             <div className="card-body">
                                 <h1 className="text-info">Create Blog post here</h1>
-                                <h3>---- Image here ----</h3>
                                 <a href={newPostUrl}><input className="btn btn-primary ml-2" type="button" value="Create"/></a>
                             </div>
                             <hr/>

@@ -19,7 +19,9 @@ module.exports = (db) => {
    }
 
   const createUser = (request, response) => {
-      db.user.create(request.body, (error, queryResult) => {
+      let path = '/media/';
+      db.user.create(request.body, request.files.image, path , (error, queryResult) => {
+        console.log("request.file for FILE: ", request.files.image);
         console.log("request.body for CREATE: ", request.body);
         console.log('QUERYRESULTS NEW: ', queryResult.rows);
         if (error) {
@@ -28,14 +30,22 @@ module.exports = (db) => {
         }
         if (queryResult.rowCount >= 1) {
             console.log('User created successfully');
-
-          //if (request.body)
-
           //response.cookie('username', request.body.name);
+                if (!request.files){
+                    return response.status(400).send('No files were uploaded.');
+                }
+                // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+                let sampleFile = request.files.image;
+                // Use the mv() method to place the file somewhere on your server
+                sampleFile.mv('public/media/' + sampleFile.name, function(err) {
+                  if (err){
+                    return response.status(500).send(err);
+                  }
+                  console.log('File uploaded!');
+                })
         } else {
             console.log('User could not be created');
         }
-
         // redirect to home page after creation
         response.redirect('/login');
 
@@ -210,8 +220,38 @@ module.exports = (db) => {
             response.send('NOT UPDATED!');
         }
      })
-  }
+   }
 
+   const uploadImage = (request, response) => {
+
+       // User did not upload file
+       if(!request.files) {
+           console.log("No image was uploaded.");
+           response.sendStatus(400);
+       }
+
+       const uploadedFile = request.files.image;
+
+       uploadedFile.mv('public/media/'+ uploadedFile.name, (error) => {
+
+           if (error) {
+               console.log("fail to move file");
+               response.sendStatus(500);
+           }
+
+           let path = '/media/' + uploadedFile.name;
+
+           db.user.uploadImage(request.cookies['userId'], path, (error) => {
+
+               if(error) {
+                   console.log("error inserting path into db: ", error.message);
+                   response.sendStatus(500);
+               }
+
+               response.redirect('/profile/' + request.params.id);
+           });
+       });
+     };
 
 
   // const otherUserProfile = (request, response) => {
@@ -254,7 +294,8 @@ module.exports = (db) => {
     userProfile,
     editProfile,
     update,
-    deleteUser
+    deleteUser,
+    uploadImage
   };
 
 };

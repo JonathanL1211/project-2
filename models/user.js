@@ -7,17 +7,17 @@ var sha256 = require('js-sha256');
  * ===========================================
  */
 module.exports = (dbPoolInstance) => {
-    const create = (user, callback) => {
+    const create = (user, files, path, callback) => {
       // run user input password through bcrypt to obtain hashed password
 
       var hashedValue = sha256(user.password);
       // set up query
       const queryString = "INSERT INTO users (name, hashedPassword, profileimage, bio, phoneNumber) VALUES ($1, $2, $3, $4, $5)";
-
+      const pathImage = path + files.name;
       const values = [
         user.name,
         hashedValue,
-        user.image,
+        pathImage,
         user.bio,
         user.contact
       ];
@@ -121,6 +121,28 @@ module.exports = (dbPoolInstance) => {
       });
     }
 
+    //  /**
+   // * ===========================================
+   // * Uploading image
+   // * ===========================================
+   // */
+
+    const uploadImage = (user, path, callback) => {
+
+        const queryString = "UPDATE users SET profileImage=($1) WHERE id=($2);"
+
+        const values = [
+            path,
+            user
+        ];
+
+        dbPoolInstance.query(queryString, values, (error, result) => {
+            callback(error);
+        });
+    };
+
+
+
 
 
 
@@ -131,6 +153,7 @@ module.exports = (dbPoolInstance) => {
       getUserInfo,
       update,
       deleteUser,
-      homepagePost
+      homepagePost,
+      uploadImage
     };
 };
