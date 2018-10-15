@@ -24,21 +24,21 @@ module.exports = (db) => {
         if (queryResult.rowCount >= 1) {
             console.log('Created post successfully!');
             if (!request.files){
-                    return response.status(400).send('No files were uploaded.');
+                return response.status(400).send('No files were uploaded.');
+            }
+            // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+            let sampleFile = request.files.postimage;
+            // Use the mv() method to place the file somewhere on your server
+            sampleFile.mv('public/media/' + sampleFile.name, function(err) {
+                if (err){
+                  return response.status(500).send(err);
                 }
-                // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-                let sampleFile = request.files.postimage;
-                // Use the mv() method to place the file somewhere on your server
-                sampleFile.mv('public/media/' + sampleFile.name, function(err) {
-                  if (err){
-                    return response.status(500).send(err);
-                  }
-                  console.log('File uploaded!');
-                })
+                console.log('File uploaded!');
+            })
+        }
           //if (request.body)
-
-          //response.cookie('username', request.body.name);
-        } else {
+            //response.cookie('username', request.body.name);
+        else {
             console.log('Post not created!');
         }
         //response.cookie('postId', queryResult.rows[0].id);
@@ -102,7 +102,7 @@ module.exports = (db) => {
         if (queryResult.rowCount >= 1) {
             response.redirect('/home');
         } else {
-            response.send('NOT UPDATED!');
+            response.send('NOT DELETED!!');
         }
      })
   }

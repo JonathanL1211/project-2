@@ -41,7 +41,7 @@ class Profile extends React.Component {
                 </div>
             </nav>
 
-            <div className="container-fluid mt-3">
+            <div className="container-fluid mt-3" style={ {backgroundColor: 'white'} }>
                 <div className="row">
                     <div className="col-md-10 offset-md-1">
                         <h1 className="text-primary mt-3">Post title: <span className="text-info">{this.props.res[0].title}</span></h1>

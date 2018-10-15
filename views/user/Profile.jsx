@@ -4,7 +4,7 @@ class Profile extends React.Component {
   render() {
     console.log("HOMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
     console.log("this.props in HOME: ", this.props);
-    console.log("this.props in profile image: ", this.props.res[0].profileimage);
+    //console.log("this.props in profile image: ", this.props.res[0].profileimage);
     let editUrl = '/profile/' + this.props.res[0].id +'/edit';
     let newPostUrl = '/post';
     let deleteUrl = '/profile/' + this.props.res[0].id + '/delete';
