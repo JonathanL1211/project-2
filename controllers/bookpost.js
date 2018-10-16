@@ -8,7 +8,7 @@ module.exports = (db) => {
    * ===========================================
    */
    const newPostForm = (request, response) => {
-      response.render('bookpost/new');
+      response.render('bookpost/New');
    }
 
    const createPost = (request, response) => {
