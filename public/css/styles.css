@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Mali');
+#bookExchangeTag {
+	font-family: 'Mali', cursive;
+	font-size: 30px;
+}
+
 body {
 	background-image: url("../images/bookshelf.jpg");
 	background-repeat: no-repeat;

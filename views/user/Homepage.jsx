@@ -22,7 +22,7 @@ class HomePage extends React.Component {
             </nav>
 
             <div className="container-fluid" style={ {marginTop: '20px'}, {color: 'black'} } >
-                <p> BookExchange is a place for readers to connect and read varieties of book through one-for-one exchange </p>
+                <p id="bookExchangeTag"> BookExchange is a place for readers to connect and read varieties of book through one-for-one exchange </p>
             </div>
 
             <div className="row">

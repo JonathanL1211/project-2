@@ -1,7 +1,7 @@
 module.exports = (app, db) => {
 
   const users = require('./controllers/user')(db);
-  const bookPosts = require('./controllers/bookPost')(db);
+  const bookPosts = require('./controllers/bookpost')(db);
   const comments = require('./controllers/comment')(db);
 
   /*
